@@ -1,126 +1,119 @@
 'use client'
 
-import Image from 'next/image'
-import { motion } from 'framer-motion'
-import { Clock, Target, Globe } from 'lucide-react'
-
-const benefits = [
-  {
-    icon: Clock,
-    title: "Economia de Tempo",
-    description: "Carregue até 50.000 imagens e receba somente as que têm animais.",
-    imageUrl: "/economiaTempo.svg",
-    imageAlt: "Pesquisador analisando imagens de armadilhas fotográficas",
-    details: [
-      "Processamento ultrarrápido de grandes volumes de imagens",
-      "Filtragem inteligente focada apenas em fotos com animais",
-      "Redução drástica do tempo de análise manual"
-    ]
-  },
-  {
-    icon: Target,
-    title: "Resultados Confiáveis",
-    description: "Precisão na análise, eliminando erros humanos. Relatórios organizados para uso direto.",
-    imageUrl: "/analisandoImagens.svg",
-    imageAlt: "Gráficos e relatórios de análise de vida selvagem",
-    details: [
-      "Algoritmos de IA de última geração para identificação precisa",
-      "Eliminação de falsos positivos e negativos",
-      "Geração automática de relatórios detalhados e prontos para uso"
-    ]
-  },
-  {
-    icon: Globe,
-    title: "Liberdade de Uso",
-    description: "Interface simples, acessível a qualquer hora e lugar.",
-    imageUrl: "/anywhere.svg",
-    imageAlt: "Pesquisador usando o aplicativo em um tablet no campo",
-    details: [
-      "Acesso via web, compatível com qualquer dispositivo",
-      "Trabalhe do campo, do escritório ou de casa com a mesma eficiência",
-      "Atualizações e backups automáticos na nuvem"
-    ]
-  }
-]
-
-const BenefitSection = ({ benefit, index }) => {
-  const isEven = index % 2 === 0
-  const textAnimation = isEven
-    ? { initial: { x: 50, opacity: 0 }, whileInView: { x: 0, opacity: 1 }, transition: { duration: 0.5 } }
-    : { initial: { x: -50, opacity: 0 }, whileInView: { x: 0, opacity: 1 }, transition: { duration: 0.5 } }
-  const imageAnimation = isEven
-    ? { initial: { x: -50, opacity: 0 }, whileInView: { x: 0, opacity: 1 }, transition: { duration: 0.5 } }
-    : { initial: { x: 50, opacity: 0 }, whileInView: { x: 0, opacity: 1 }, transition: { duration: 0.5 } }
-
-  return (
-    <div className={`flex flex-col ${isEven ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 items-center mb-20`}>
-      <motion.div className="w-full md:w-1/2" {...imageAnimation}>
-        <Image
-          src={benefit.imageUrl}
-          alt={benefit.imageAlt}
-          width={600}
-          height={400}
-          className="rounded-lg shadow-xl"
-        />
-      </motion.div>
-      <motion.div className="w-full md:w-1/2" {...textAnimation}>
-        <div className="flex items-center mb-4">
-          <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center mr-4">
-            <benefit.icon className="w-6 h-6 text-white" />
-          </div>
-          <h3 className="text-3xl font-bold bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent">
-            {benefit.title}
-          </h3>
-        </div>
-        <p className="text-xl text-gray-700 mb-6">{benefit.description}</p>
-        <ul className="space-y-2">
-          {benefit.details.map((detail, idx) => (
-            <li key={idx} className="flex items-start">
-              <span className="mr-2 text-green-600">•</span>
-              <span>{detail}</span>
-            </li>
-          ))}
-        </ul>
-      </motion.div>
-    </div>
-  )
-}
+import { QrCode, Sparkles, Shield, Users, Rocket, Move } from 'lucide-react'
+import { Card, CardContent } from "@/components/ui/card"
 
 export default function BenefitsSection() {
   return (
-    <section className="py-20 bg-gradient-to-b from-green-50 to-white overflow-hidden">
-      <div className="container mx-auto px-4">
-        <motion.h2 
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-4xl font-bold mb-6 text-center bg-gradient-to-r from-green-600 to-green-800 bg-clip-text text-transparent"
-        >
-          O que você ganha com nossa solução?
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-xl text-center text-gray-700 mb-16"
-        >
-          Transforme sua pesquisa de vida selvagem com tecnologia de ponta
-        </motion.p>
-        {benefits.map((benefit, index) => (
-          <BenefitSection key={index} benefit={benefit} index={index} />
-        ))}
+    <div className="relative bg-white py-16 px-4 md:px-6 lg:px-8 overflow-hidden">
+      {/* Ambient light effects */}
+      <div className="absolute inset-0 bg-gradient-to-br from-green-100 via-blue-50 to-purple-100 opacity-70" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob" />
+      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-blue-300 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000" />
+      
+      <div className="relative max-w-7xl mx-auto">
+        <div className="relative">
+          {/* Glow effect behind the title */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-green-100 to-gray-100 rounded-lg blur-2xl opacity-20" />
+          <h2 className="text-3xl md:text-4xl font-bold mb-12">
+            <span className="block text-green-700 drop-shadow-sm">Tudo o que você precisa</span>
+            <span className="block bg-clip-text text-transparent bg-gradient-to-r from-gray-800 to-gray-600">
+              e muito mais.
+            </span>
+          </h2>
+        </div>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Card className="relative overflow-hidden backdrop-blur-sm bg-white/90 border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+            <CardContent className="space-y-4 p-6">
+              <div className="h-40 flex items-center justify-center">
+                <img 
+                  src="/placeholder.svg?height=160&width=320" 
+                  alt="Ilustração Plug and Play"
+                  className="h-40 object-contain relative z-10"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-green-100 to-transparent opacity-50" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800">Plug and Play</h3>
+              <p className="text-gray-600">
+                Não perca tempo recriando um fluxo de pagamento que já funciona para milhões de pessoas. Ship fast.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="relative overflow-hidden backdrop-blur-sm bg-white/90 border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+            <CardContent className="space-y-4 p-6">
+              <div className="h-40 flex items-center justify-center">
+                <QrCode className="h-20 w-20 text-green-600" />
+                <div className="absolute inset-0 bg-gradient-to-br from-green-100 to-transparent opacity-50" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800">Pagamento simples e rápido</h3>
+              <p className="text-gray-600">
+                Tenha uma página de checkout para que seus clientes comprem seus produtos com facilidade e segurança.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="relative overflow-hidden backdrop-blur-sm bg-white/90 border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+            <CardContent className="space-y-4 p-6">
+              <div className="h-40 flex items-center justify-center">
+                <Sparkles className="h-20 w-20 text-green-600" />
+                <div className="absolute inset-0 bg-gradient-to-br from-green-100 to-transparent opacity-50" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800">Customização</h3>
+              <p className="text-gray-600">
+                Customize o seu checkout, e deixe ele com a sua cara! (em breve)
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="relative overflow-hidden backdrop-blur-sm bg-white/90 border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+            <CardContent className="space-y-4 p-6">
+              <div className="h-40 flex items-center justify-center">
+                <div className="relative h-32 w-32 bg-[#635BFF]/10 rounded-lg flex items-center justify-center">
+                  <img 
+                    src="/placeholder.svg?height=160&width=320" 
+                    alt="Stripe Integration"
+                    className="h-24 object-contain relative z-10"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-br from-green-100 to-transparent opacity-50" />
+                </div>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800">Migre rápido</h3>
+              <p className="text-gray-600">
+                Tenha um suporte ao migrar de outro gateway para a AbacatePay. Quando não quiser mais continuar com a gente, te ajudaremos a migrar também.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="relative overflow-hidden backdrop-blur-sm bg-white/90 border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+            <CardContent className="space-y-4 p-6">
+              <div className="h-40 flex items-center justify-center">
+                <Users className="h-20 w-20 text-green-600" />
+                <div className="absolute inset-0 bg-gradient-to-br from-green-100 to-transparent opacity-50" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800">Networking</h3>
+              <p className="text-gray-600">
+                Faça parte de grupos com empreendedores que faturam +5k, +10k, +50k, +100k.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="relative overflow-hidden backdrop-blur-sm bg-white/90 border border-gray-200 hover:shadow-lg transition-shadow duration-300">
+            <CardContent className="space-y-4 p-6">
+              <div className="h-40 flex items-center justify-center">
+                <Shield className="h-20 w-20 text-green-600" />
+                <div className="absolute inset-0 bg-gradient-to-br from-green-100 to-transparent opacity-50" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-800">Segurança garantida</h3>
+              <p className="text-gray-600">
+                Operamos com parceiros confiáveis e seguros. Todos os seus dados são protegidos.
+              </p>
+            </CardContent>
+          </Card>
+        </div>
       </div>
-      <div className="mt-16 text-center">
-        <motion.a 
-          href="#" 
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="inline-block px-8 py-4 rounded-full bg-gradient-to-r from-green-500 to-green-700 text-white font-bold text-lg shadow-lg hover:from-green-600 hover:to-green-800 transition-all duration-300"
-        >
-          Revolucione sua pesquisa agora
-        </motion.a>
-      </div>
-    </section>
+    </div>
   )
 }
 
